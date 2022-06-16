@@ -1,5 +1,5 @@
 const AtracaoRepository = require('../repositories/AtracaoRepository');
-const { responseCreated, responseBadRequest } = require('../utils/response');
+const { responseCreated, responseBadRequest, responseOk } = require('../utils/response');
 const msg = require('../constants/messages');
 
 class AtracaoService {
@@ -21,6 +21,16 @@ class AtracaoService {
         
         const atracaoSalva = await AtracaoRepository.save(atracao);
         return responseCreated(atracaoSalva, msg.atracao.cadastroOk);
+    }
+
+    async findById(id) {
+        const atracao = await AtracaoRepository.findById(id);
+
+        if(!atracao) {
+            return responseBadRequest(msg.atracao.buscaError);
+        }
+
+        return responseOk(atracao);
     }
 }
 

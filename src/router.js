@@ -7,5 +7,6 @@ router.get('/', (req, res) => {
 });
 
 router.post('/atracao', AtracaoController.save);
+router.get('/atracao/:id', AtracaoController.findById);
 
 module.exports = router;

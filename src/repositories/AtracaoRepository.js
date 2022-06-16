@@ -28,6 +28,16 @@ class AtracaoRepository {
 
         return atracao;
     }
+
+    async findById(id) {
+        const atracao = await PrismaClient.atracao.findUnique({
+            where: {
+                id
+            }
+        })
+
+        return atracao;
+    }
 }
 
 module.exports = new AtracaoRepository();

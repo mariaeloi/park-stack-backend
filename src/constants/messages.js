@@ -4,5 +4,6 @@ module.exports = {
         cadastroError: "Erro ao cadastrar atração",
         codigoRepetido: "Já existe uma atração cadastrada com esse código",
         nomeRepetido: "Já existe uma atração cadastrada com esse nome",
+        buscaError: "Atração não encontrada",
     }
 }

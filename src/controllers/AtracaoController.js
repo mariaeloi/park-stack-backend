@@ -9,6 +9,16 @@ class AtracaoController {
             next(err);
         }
     }
+
+    async findById(req, res, next) {
+        try {
+            const { id } = req.params;
+            const response = await AtracaoService.findById(parseInt(id));
+            res.json(response);
+        } catch(err) {
+            next(err);
+        }
+    }
 }
 
 module.exports = new AtracaoController();
