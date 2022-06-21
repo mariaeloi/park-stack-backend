@@ -1,6 +1,6 @@
 const PrismaClient = require('../database/PrismaClient');
 
-class AtracaoRepository {
+class AttractionRepository {
     async save(_atracao) {
         const atracao = await PrismaClient.atracao.create({
             data: _atracao
@@ -40,4 +40,4 @@ class AtracaoRepository {
     }
 }
 
-module.exports = new AtracaoRepository();
+module.exports = new AttractionRepository();
