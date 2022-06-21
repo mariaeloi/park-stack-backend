@@ -1,9 +1,9 @@
-const AtracaoService = require('../services/AtracaoService');
+const AttractionService = require('../services/AttractionService');
 
-class AtracaoController {
+class AttractionController {
     async save(req, res, next) {
         try {
-            const response = await AtracaoService.save(req.body);
+            const response = await AttractionService.save(req.body);
             res.json(response);
         } catch(err) {
             next(err);
@@ -13,7 +13,7 @@ class AtracaoController {
     async findById(req, res, next) {
         try {
             const { id } = req.params;
-            const response = await AtracaoService.findById(parseInt(id));
+            const response = await AttractionService.findById(parseInt(id));
             res.json(response);
         } catch(err) {
             next(err);
@@ -21,4 +21,4 @@ class AtracaoController {
     }
 }
 
-module.exports = new AtracaoController();
+module.exports = new AttractionController();
