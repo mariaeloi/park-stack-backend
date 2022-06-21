@@ -1,42 +1,42 @@
 const PrismaClient = require('../database/PrismaClient');
 
 class AttractionRepository {
-    async save(_atracao) {
-        const atracao = await PrismaClient.atracao.create({
-            data: _atracao
+    async save(_attraction) {
+        const attraction = await PrismaClient.attraction.create({
+            data: _attraction
         })
 
-        return atracao;
+        return attraction;
     }
 
-    async findByCodigo(codigo) {
-        const atracao = await PrismaClient.atracao.findUnique({
+    async findByCode(code) {
+        const attraction = await PrismaClient.attraction.findUnique({
             where: {
-                codigo
+                code
             }
         })
 
-        return atracao;
+        return attraction;
     }
 
-    async findByNome(nome) {
-        const atracao = await PrismaClient.atracao.findUnique({
+    async findByName(name) {
+        const attraction = await PrismaClient.attraction.findUnique({
             where: {
-                nome
+                name
             }
         })
 
-        return atracao;
+        return attraction;
     }
 
     async findById(id) {
-        const atracao = await PrismaClient.atracao.findUnique({
+        const attraction = await PrismaClient.attraction.findUnique({
             where: {
                 id
             }
         })
 
-        return atracao;
+        return attraction;
     }
 }
 

@@ -10,35 +10,35 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Usuario {
-  id    Int             @id @default(autoincrement())
-  nome  String
-  email String          @unique
-  senha String
-  papel String
-  fila  UsuarioAtracao?
+model User {
+  id       Int             @id @default(autoincrement())
+  name     String
+  email    String          @unique
+  password String
+  role     String
+  queue    UserAttraction?
 
-  @@map("usuarios")
+  @@map("users")
 }
 
-model UsuarioAtracao {
-  id_atracao Int
-  Atracao    Atracao @relation(fields: [id_atracao], references: [id])
-  id_usuario Int     @unique
-  Usuario    Usuario @relation(fields: [id_usuario], references: [id])
-  posicao    Int
+model UserAttraction {
+  id_attraction Int
+  Attraction    Attraction @relation(fields: [id_attraction], references: [id])
+  id_user       Int        @unique
+  User          User       @relation(fields: [id_user], references: [id])
+  position      Int
 
-  @@map("fila")
+  @@map("queue")
 }
 
-model Atracao {
-  id        Int              @id @default(autoincrement())
-  ativo     Boolean          @default(true)
-  codigo    String           @unique
-  nome      String           @unique
-  descricao String?
-  duracao   Decimal
-  fila      UsuarioAtracao[]
+model Attraction {
+  id          Int              @id @default(autoincrement())
+  status      Boolean          @default(true)
+  code        String           @unique
+  name        String           @unique
+  description String?
+  duration    Decimal
+  queue       UserAttraction[]
 
-  @@map("atracoes")
+  @@map("attractions")
 }

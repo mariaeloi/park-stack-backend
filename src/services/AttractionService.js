@@ -3,34 +3,34 @@ const { responseCreated, responseBadRequest, responseOk } = require('../utils/re
 const msg = require('../constants/messages');
 
 class AttractionService {
-    async save(atracao) {
+    async save(attraction) {
         let errors = new Object();
 
-        const atracaoPorCodigo = await AttractionRepository.findByCodigo(atracao.codigo);
-        if(atracaoPorCodigo) {
-            errors.codigo = msg.atracao.codigoRepetido;
+        const attractionByCode = await AttractionRepository.findByCode(attraction.code);
+        if(attractionByCode) {
+            errors.code = msg.atracao.codigoRepetido;
         }
-        const atracaoPorNome = await AttractionRepository.findByNome(atracao.nome);
-        if(atracaoPorNome) {
-            errors.nome = msg.atracao.nomeRepetido;
+        const attractionByName = await AttractionRepository.findByName(attraction.name);
+        if(attractionByName) {
+            errors.name = msg.atracao.nomeRepetido;
         }
 
         if(Object.keys(errors).length !== 0) {
             return responseBadRequest(msg.atracao.cadastroError, errors);
         }
         
-        const atracaoSalva = await AttractionRepository.save(atracao);
-        return responseCreated(atracaoSalva, msg.atracao.cadastroOk);
+        const attractionReturn = await AttractionRepository.save(attraction);
+        return responseCreated(attractionReturn, msg.atracao.cadastroOk);
     }
 
     async findById(id) {
-        const atracao = await AttractionRepository.findById(id);
+        const attraction = await AttractionRepository.findById(id);
 
-        if(!atracao) {
+        if(!attraction) {
             return responseBadRequest(msg.atracao.buscaError);
         }
 
-        return responseOk(atracao);
+        return responseOk(attraction);
     }
 }
 
