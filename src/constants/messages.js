@@ -5,5 +5,6 @@ module.exports = {
         codeExists: "Já existe uma atração cadastrada com esse código",
         nameExists: "Já existe uma atração cadastrada com esse nome",
         searchError: "Atração não encontrada",
+        checkIn: "Check-In realizado com sucesso"
     }
 }

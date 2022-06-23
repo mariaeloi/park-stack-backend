@@ -38,6 +38,28 @@ class AttractionRepository {
 
         return attraction;
     }
+
+    async count(id_attraction){
+        const amount = await PrismaClient.userAttraction.findMany({
+            where:{
+                id_attraction
+            }
+        });
+
+        return amount;
+    }
+
+    async checkIn( idAttraction, idUser, position){
+        const queue = await PrismaClient.userAttraction.create({
+            data: {
+                id_attraction: idAttraction,
+                id_user: idUser,
+                position
+            }
+        })
+
+        return queue;
+    }
 }
 
 module.exports = new AttractionRepository();

@@ -32,6 +32,24 @@ class AttractionService {
 
         return responseOk(attraction);
     }
+
+    async checkIn(pQueue) {
+
+        const attraction = await AttractionRepository.findById(parseInt(pQueue.idAttraction));
+
+        if(!attraction) {
+            return responseBadRequest(msg.attraction.searchError);
+        }
+ 
+        const queue = await AttractionRepository.count(parseInt(pQueue.idAttraction));
+
+        let position = queue.length;
+
+        const attractionCheckinReturn = await AttractionRepository.checkIn(parseInt(pQueue.idAttraction), parseInt(pQueue.idUser), parseInt(position+1));
+        
+        return responseCreated(attractionCheckinReturn, msg.attraction.checkIn);
+        
+    }
 }
 
 module.exports = new AttractionService();

@@ -8,5 +8,6 @@ router.get('/', (req, res) => {
 
 router.post('/atracao', AttractionController.save);
 router.get('/atracao/:id', AttractionController.findById);
+router.post('/checkin', AttractionController.checkIn);
 
 module.exports = router;
