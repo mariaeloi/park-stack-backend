@@ -38,6 +38,7 @@ model Attraction {
   name        String           @unique
   description String?
   duration    Decimal
+  num_users   Int
   queue       UserAttraction[]
 
   @@map("attractions")
