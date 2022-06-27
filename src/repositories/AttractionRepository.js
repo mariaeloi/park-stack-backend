@@ -38,6 +38,11 @@ class AttractionRepository {
 
         return attraction;
     }
+
+    async findAll() {
+        const attractions = await PrismaClient.attraction.findMany();
+        return attractions;
+    }
 }
 
 module.exports = new AttractionRepository();

@@ -39,6 +39,11 @@ class AttractionService {
 
         return responseOk(attraction);
     }
+
+    async findAll() {
+        const attractions = await AttractionRepository.findAll();
+        return responseOk(attractions);
+    }
 }
 
 module.exports = new AttractionService();
