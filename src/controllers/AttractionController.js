@@ -28,6 +28,15 @@ class AttractionController {
             next(err);
         }
     }
+
+    async findAll(req, res, next) {
+        try {
+            const response = await AttractionService.findAll();
+            res.json(response);
+        } catch(err) {
+            next(err);
+        }
+    }
 }
 
 module.exports = new AttractionController();
