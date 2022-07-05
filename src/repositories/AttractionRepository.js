@@ -65,6 +65,15 @@ class AttractionRepository {
         const attractions = await PrismaClient.attraction.findMany();
         return attractions;
     }
+
+    async findUserPosition(id_user){
+        const userAttraction = await PrismaClient.userAttraction.findUnique({
+            where: {
+                id_user
+            }
+        })
+        return userAttraction;
+    }
 }
 
 module.exports = new AttractionRepository();

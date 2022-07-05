@@ -37,6 +37,16 @@ class AttractionController {
             next(err);
         }
     }
+
+    async getUserPosition(req, res, next) {
+        try {
+            const { id } = req.params;
+            const response = await AttractionService.getUserPosition(id);
+            res.json(response);
+        } catch(err) {
+            next(err);
+        }
+    }
 }
 
 module.exports = new AttractionController();

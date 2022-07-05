@@ -10,5 +10,6 @@ router.post('/atracao', AttractionController.save);
 router.get('/atracao/:id', AttractionController.findById);
 router.get('/atracao', AttractionController.findAll);
 router.post('/checkin', AttractionController.checkIn);
+router.get('/atracao/usuario/:id', AttractionController.getUserPosition);
 
 module.exports = router;

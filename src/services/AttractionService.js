@@ -61,6 +61,13 @@ class AttractionService {
         const attractions = await AttractionRepository.findAll();
         return responseOk(attractions);
     }
+
+    async getUserPosition(idUser) {
+        const userAttraction = await AttractionRepository.findUserPosition(parseInt(idUser));
+        const attraction = await AttractionRepository.findById(parseInt(userAttraction.id_attraction));
+        userAttraction.id_attraction = attraction;
+        return responseOk(userAttraction);
+    }
 }
 
 module.exports = new AttractionService();
