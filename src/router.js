@@ -11,5 +11,6 @@ router.get('/atracao/:id', AttractionController.findById);
 router.get('/atracao', AttractionController.findAll);
 router.post('/checkin', AttractionController.checkIn);
 router.get('/atracao/usuario/:id', AttractionController.getUserPosition);
+router.post('/checkout', AttractionController.checkOut);
 
 module.exports = router;

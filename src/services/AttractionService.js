@@ -15,11 +15,11 @@ class AttractionService {
         }
 
         if(attraction.duration <= 0) {
-            errors.duration = "A duração deve ser maior que 0";
+            errors.duration = msg.attraction.invalidDuration;
         }
 
         if(attraction.num_users <= 0) {
-            errors.num_users = "A quantidade de vagas deve ser maior que 0";
+            errors.num_users = msg.attraction.invalidNumUsers;
         }
 
         if(Object.keys(errors).length !== 0) {
@@ -64,9 +64,23 @@ class AttractionService {
 
     async getUserPosition(idUser) {
         const userAttraction = await AttractionRepository.findUserPosition(parseInt(idUser));
+        if(userAttraction == null) {
+            return responseBadRequest(msg.user.notFoundInQueue);
+        }
         const attraction = await AttractionRepository.findById(parseInt(userAttraction.id_attraction));
         userAttraction.id_attraction = attraction;
         return responseOk(userAttraction);
+    }
+
+    async checkOut(body) {
+        const userAttraction = await AttractionRepository.findUserPosition(parseInt(body.idUser));
+        if(userAttraction == null) {
+            return responseBadRequest(msg.user.notFoundInQueue);
+        }
+
+        await AttractionRepository.checkout(parseInt(userAttraction.id_user));
+        await AttractionRepository.updatePositionsGT(userAttraction.position, userAttraction.id_attraction);
+        return responseOk({}, msg.attraction.checkOut);
     }
 }
 

@@ -74,6 +74,30 @@ class AttractionRepository {
         })
         return userAttraction;
     }
+
+    async checkout(idUser){
+        await PrismaClient.userAttraction.delete({
+            where: {
+                id_user: idUser
+            }
+        })
+    }
+
+    async updatePositionsGT(position, id_attraction){
+        await PrismaClient.userAttraction.updateMany({
+            where: {
+                id_attraction,
+                position: {
+                    gt: position
+                }
+            },
+            data: {
+                position: {
+                    decrement: 1
+                }
+            }
+        })
+    }
 }
 
 module.exports = new AttractionRepository();

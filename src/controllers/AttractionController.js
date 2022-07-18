@@ -47,6 +47,15 @@ class AttractionController {
             next(err);
         }
     }
+
+    async checkOut(req, res, next) {
+        try {
+            const response = await AttractionService.checkOut(req.body);
+            res.json(response);
+        } catch(err) {
+            next(err);
+        }
+    }
 }
 
 module.exports = new AttractionController();
