@@ -37,7 +37,11 @@ class AttractionService {
             return responseBadRequest(msg.attraction.searchError);
         }
 
-        return responseOk(attraction);
+        const queue = await AttractionRepository.count(parseInt(id));
+
+        let queueSize = queue.length;
+
+        return responseOk({attraction, queueSize});
     }
 
     async checkIn(pQueue) {
@@ -46,6 +50,12 @@ class AttractionService {
 
         if(!attraction) {
             return responseBadRequest(msg.attraction.searchError);
+        }
+
+        const isInQueue = await AttractionRepository.findUserPosition(parseInt(pQueue.idUser));
+
+        if(isInQueue){
+            return responseBadRequest(msg.user.alreadyInQueue);
         }
  
         const queue = await AttractionRepository.count(parseInt(pQueue.idAttraction));

@@ -11,6 +11,7 @@ module.exports = {
         invalidNumUsers: "A quantidade de vagas deve ser maior que 0"
     },
     user: {
-        notFoundInQueue: "O usuário não está em nenhuma fila"
+        notFoundInQueue: "O usuário não está em nenhuma fila",
+        alreadyInQueue: "O usuário já está na fila da atração"
     }
 }
