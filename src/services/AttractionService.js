@@ -40,8 +40,8 @@ class AttractionService {
         const queue = await AttractionRepository.count(parseInt(id));
 
         let queueSize = queue.length;
-
-        return responseOk({attraction, queueSize});
+        attraction.queueSize = queueSize;
+        return responseOk(attraction);
     }
 
     async checkIn(pQueue) {
